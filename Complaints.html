@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Complaints</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    color:white;
+    background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url("background.jpeg") no-repeat center center fixed;
+    background-size:cover;
+}
+header{
+    padding:30px 40px;
+}
+header h1{
+    font-size:30px;
+}
+nav{
+    position:absolute;
+    top:30px;
+    right:40px;
+}
+nav a{
+    color:white;
+    margin-left:20px;
+    text-decoration:none;
+    font-weight:bold;
+    padding:6px 12px;
+    border-radius:4px;
+}
+nav a:hover{
+    background:rgba(255,255,255,0.25);
+}
+nav a.active{
+    background:lightseagreen;
+    color:#111827;
+}
+
+/* Main */
+.main{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 20px;
+}
+.form-container{
+    background:rgba(255,255,255,0.95);
+    color:#111827;
+    width:100%;
+    max-width:520px;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+.form-container h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#2563eb;
+}
+.form-group{
+    margin-bottom:15px;
+}
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:10px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+.form-group textarea{
+    resize:none;
+    height:120px;
+}
+
+/* Buttons */
+.submit-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    background:#ef4444;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+.submit-btn:hover{
+    background:#dc2626;
+}
+
+/* Footer */
+footer{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    text-align:center;
+    padding:10px;
+    font-size:14px;
+    background:rgba(0,0,0,0.4);
+}
+
+/* Responsive */
+@media(max-width:768px){
+    nav{
+        position:static;
+        margin-top:10px;
+        text-align:center;
+    }
+    nav a{
+        display:inline-block;
+        margin:6px;
+    }
+    header{
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Student Complaints</h1>
+</header>
+
+<nav>
+    <a href="Home.html">Home</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="complaints.html" class="active">Complaints</a>
+</nav>
+
+<div class="main">
+
+    <div class="form-container">
+        <h2>Submit a Complaint</h2>
+
+        <form action="submit_complaint.php" method="POST">
+
+            <div class="form-group">
+                <label>Complaint Type</label>
+                <select name="complaint_type" required>
+                    <option value="">Select Type</option>
+                    <option>Lecturer Issue</option>
+                    <option>Facility Issue</option>
+                    <option>Administration Issue</option>
+                    <option>Exam / Results</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Lecturer / Department</label>
+                <input type="text" name="related_to" placeholder="Lecturer or Department name">
+            </div>
+
+            <div class="form-group">
+                <label>Priority Level</label>
+                <select name="priority" required>
+                    <option value="">Select Priority</option>
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Complaint Details</label>
+                <textarea name="complaint_message" placeholder="Describe your complaint clearly..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Complaint</button>
+
+        </form>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 Student Feedback System
+</footer>
+
+</body>
+</html>

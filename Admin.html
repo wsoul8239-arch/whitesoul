@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    color:white;
+    background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("background.jpeg") no-repeat center center fixed;
+    background-size:cover;
+}
+header{
+    padding:25px 40px;
+}
+header h1{
+    font-size:32px;
+}
+
+/* NAV BAR */
+nav{
+    position:absolute;
+    top:30px;
+    right:40px;
+}
+nav a{
+    color:white;
+    margin-left:20px;
+    text-decoration:none;
+    font-weight:bold;
+    padding:6px 12px;
+    border-radius:4px;
+}
+nav a:hover{
+    background:rgba(255,255,255,0.25);
+}
+nav a.active{
+    background:lightseagreen;
+    color:#111827;
+}
+
+/* MAIN */
+.main{
+    padding:40px 20px 80px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* LOGIN BOX */
+.login-box{
+    background:rgba(255,255,255,0.95);
+    color:#111827;
+    padding:30px;
+    width:100%;
+    max-width:350px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+.login-box h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#2563eb;
+}
+.login-box input{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+.login-box button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+.login-box button:hover{
+    background:#1e40af;
+}
+.error{
+    color:#dc2626;
+    text-align:center;
+    margin-top:10px;
+    display:none;
+}
+
+/* DASHBOARD */
+.dashboard{
+    display:none;
+    width:100%;
+}
+.section{
+    background:rgba(255,255,255,0.95);
+    color:#111827;
+    border-radius:12px;
+    padding:25px;
+    margin-bottom:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+.section h2{
+    margin-bottom:15px;
+    color:#2563eb;
+}
+.section.complaints h2{
+    color:#dc2626;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+table th, table td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:left;
+}
+table th{
+    background:#f3f4f6;
+}
+.empty{
+    text-align:center;
+    padding:20px;
+    color:#6b7280;
+    font-style:italic;
+}
+
+/* FOOTER */
+footer{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    text-align:center;
+    padding:10px;
+    font-size:14px;
+    background:rgba(0,0,0,0.4);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Admin Panel</h1>
+</header>
+
+
+<nav>
+    <a href="Home.html">Home</a>
+    <a href="admin.html" class="active">Admin</a>
+</nav>
+
+<div class="main">
+
+    <div class="login-box" id="loginBox">
+        <h2>Admin Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <div class="error" id="error">Invalid admin credentials</div>
+    </div>
+
+    
+    <div class="dashboard" id="dashboard">
+
+        
+        <div class="section">
+            <h2>Student Feedback</h2>
+            <table>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Lecturer</th>
+                    <th>Category</th>
+                    <th>Rating</th>
+                    <th>Feedback</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td colspan="6" class="empty">No feedback available</td>
+                </tr>
+            </table>
+        </div>
+
+      
+        <div class="section complaints">
+            <h2>Complaints</h2>
+            <table>
+                <tr>
+                    <th>Complaint Type</th>
+                    <th>Lecturer / Department</th>
+                    <th>Priority Level</th>
+                    <th>Complaint Details</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td colspan="5" class="empty">No complaints available</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2025 Student Feedback System | Admin Only
+</footer>
+
+<script>
+function login(){
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    if(user === "admin" && pass === "admin123"){
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+    } else {
+        document.getElementById("error").style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>

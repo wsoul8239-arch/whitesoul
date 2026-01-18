@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Feedback System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    color:white;
+    background:
+        linear-gradient(#0000008C, #0000008C),
+        url("background.jpeg") no-repeat center center fixed;
+    background-size:cover;
+}
+header{
+    padding:30px 40px;
+    animation:fadeDown 1s ease;
+}
+header h1{
+    font-size:32px;
+}
+header p{
+    margin-top:8px;
+    opacity:0.9;
+}
+nav{
+    position:absolute;
+    top:30px;
+    right:40px;
+    animation:fadeIn 1.5s ease;
+}
+nav a{
+    color:white;
+    margin-left:20px;
+    text-decoration:none;
+    font-weight:bold;
+    padding:6px 12px;
+    border-radius:4px;
+}
+nav a:hover{
+    background:light transparent white;
+}
+nav a.active{
+    background:lightseagreen;
+    color:#111827;
+}
+.main{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:50px;
+    padding:0 20px;
+}
+.overview{
+    max-width:800px;
+    text-align:center;
+    background:#00000080;
+    padding:20px 30px;
+    border-radius:12px;
+    margin-bottom:40px;
+    animation:fadeDown 1s ease;
+}
+.overview h2{
+    margin-bottom:15px;
+    font-size:28px;
+    color:lightseagreen;
+}
+.overview p{
+    font-size:16px;
+    line-height:1.5;
+    opacity:0.9;
+}
+/* Registration/Login section */
+.auth-container{
+    display:flex;
+    gap:40px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+    animation:slideUp 1s ease;
+}
+.auth-box{
+    background:#FFFFFFF2;
+    color:#111827;
+    padding:25px 30px;
+    border-radius:12px;
+    width:250px;
+    text-align:center;
+    transition:transform 0.3s, box-shadow 0.3s;
+}
+.auth-box:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px #0000004D;
+}
+.auth-box h3{
+    margin-bottom:15px;
+    color:#2563eb;
+}
+.auth-box button{
+    margin-top:10px;
+    padding:10px 20px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:15px;
+}
+.signup-btn{
+    background:#10b981;
+    color:white;
+}
+.login-btn{
+    background:#f59e0b;
+    color:white;
+}
+.card-container{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+    justify-content:center;
+    animation:slideUp 1.5s ease;
+}
+.card{
+    background:#FFFFFFF2;
+    color:#111827;
+    width:200px;
+    padding:5px;
+    border-radius:12px;
+    text-align:center;
+    transition:transform 0.3s, box-shadow 0.3s;
+}
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 10px 25px #00000066;
+}
+.card h2{
+    margin-bottom:15px;
+}
+.card p{
+    font-size:14px;
+    margin-bottom:20px;
+}
+.card button{
+    padding:10px 20px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:15px;
+}
+.feedback-btn{
+    background:#2563eb;
+    color:white;
+}
+.complaint-btn{
+    background:#10b981;
+    color:white;
+}
+footer{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    text-align:center;
+    padding:10px;
+    font-size:14px;
+    background:#00000066;
+}
+@keyframes fadeDown{
+    from{opacity:0; transform:translateY(-30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+@keyframes slideUp{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+.login-modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+.login-modal.active{
+    display:flex;
+}
+.login-box{
+    background:#1e293b;
+    padding:30px;
+    border-radius:12px;
+    width:320px;
+    color:white;
+}
+.login-box h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+.login-box input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:5px;
+}
+.login-box button{
+    width:100%;
+    padding:10px;
+    background:lightseagreen;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+.close-login{
+    float:right;
+    font-size:22px;
+    cursor:pointer;
+}
+.signup-modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+.signup-modal.active{
+    display:flex;
+}
+.signup-box{
+    background:#1e293b;
+    padding:30px;
+    border-radius:12px;
+    width:320px;
+    color:white;
+}
+.signup-box h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+.signup-box input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:5px;
+}
+.signup-box button{
+    width:100%;
+    padding:10px;
+    background:#10b981;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+.close-signup{
+    float:right;
+    font-size:22px;
+    cursor:pointer;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Student Feedback & Complaint</h1>
+    <p>A simple platform for students and Lecturers</p>
+</header>
+
+<nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="complaints.html">Complaints</a>
+    <a href="admin.html">Admin</a>
+</nav>
+
+<div class="main">
+
+    <div class="overview">
+        <h2>Welcome to Our Web-Site</h2>
+        <p>
+            This Student Feedback & Complaint Web-Site allows students and lecturers to easily share suggestions or report any issues. 
+            Your feedback helps improve services, and complaints are handled promptly by the administration.
+        </p>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h3>Student Sign Up</h3>
+            <button class="signup-btn" onclick="studentSignup()">Sign Up</button>
+            <button class="login-btn" onclick="studentLogin()">Login</button>
+        </div>
+        <div class="auth-box">
+            <h3>Lecturer Sign Up</h3>
+            <button class="signup-btn" onclick="lecturerSignup()">Sign Up</button>
+            <button class="login-btn" onclick="lecturerLogin()">Login</button>
+        </div>
+    </div>
+
+   
+    <div class="card-container">
+
+        <div class="card">
+            <h2>Feedback</h2>
+            <p>Share your feedback and suggestions.</p>
+            <button class="feedback-btn" onclick="goFeedback()">Feedback</button>
+        </div>
+
+        <div class="card">
+            <h2>Complaints</h2>
+            <p>Submit complaints for quick resolution.</p>
+            <button class="complaint-btn" onclick="goComplaints()">Complaints</button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="login-modal" id="loginModal">
+    <div class="login-box">
+        <span class="close-login" onclick="closeLogin()">&times;</span>
+        <h2 id="loginTitle">Login</h2>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button>Login</button>
+    </div>
+</div>
+<div class="signup-modal" id="signupModal">
+    <div class="signup-box">
+        <span class="close-signup" onclick="closeSignup()">&times;</span>
+        <h2 id="signupTitle">Sign Up</h2>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button>Create Account</button>
+    </div>
+</div>
+
+
+
+<footer>
+    © 2025 Student Feedback System
+</footer>
+
+<script>
+function goFeedback(){
+    window.location.href="feedback.html";
+}
+function goComplaints(){
+    window.location.href="complaints.html";
+}
+function studentSignup(){
+    window.location.href="student_signup.html";
+}
+function studentLogin(){
+    window.location.href="student_login.html";
+}
+function lecturerSignup(){
+    window.location.href="lecturer_signup.html";
+}
+function lecturerLogin(){
+    window.location.href="lecturer_login.html";
+}
+function studentLogin(){
+    document.getElementById("loginTitle").innerText="Student Login";
+    document.getElementById("loginModal").classList.add("active");
+}
+
+function lecturerLogin(){
+    document.getElementById("loginTitle").innerText="Lecturer Login";
+    document.getElementById("loginModal").classList.add("active");
+}
+
+function closeLogin(){
+    document.getElementById("loginModal").classList.remove("active");
+}
+function studentSignup(){
+    document.getElementById("signupTitle").innerText="Student Sign Up";
+    document.getElementById("signupModal").classList.add("active");
+}
+
+function lecturerSignup(){
+    document.getElementById("signupTitle").innerText="Lecturer Sign Up";
+    document.getElementById("signupModal").classList.add("active");
+}
+
+function closeSignup(){
+    document.getElementById("signupModal").classList.remove("active");
+}
+
+</script>
+
+</body>
+</html>
